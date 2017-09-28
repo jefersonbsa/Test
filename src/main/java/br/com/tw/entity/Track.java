@@ -3,6 +3,8 @@ package br.com.tw.entity;
 import java.time.LocalTime;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import br.com.tw.util.ApplicationConfig;
 
@@ -10,9 +12,9 @@ public class Track {
 
 
 	private int identificador;
-	private List<Session> sessions;
+	private Map<String,Session> sessions;
 
-	public Track(int identificador,List<Session> sessions) {
+	public Track(int identificador, Map<String,Session> sessions) {
 		this.identificador = identificador;
 		this.sessions = sessions;
 	}
@@ -26,24 +28,24 @@ public class Track {
 		if (!isTimeAvaliable(talk))
 			defineTimeForNetworkEvent();
 		
-		if (sessions.get(0).isAvaliableTimeForTalk(talk))
-			return sessions.get(0);
+		if (sessions.get("Morning").isAvaliableTimeForTalk(talk))
+			return sessions.get("Morning");
 		
-		return sessions.get(1);
+		return sessions.get("Afternoon");
 	}
 
 	public boolean isTimeAvaliable(Talk talk) {
-		return sessions.get(0).isAvaliableTimeForTalk(talk) || sessions.get(1).isAvaliableTimeForTalk(talk);
+		return sessions.get("Morning").isAvaliableTimeForTalk(talk) || sessions.get("Afternoon").isAvaliableTimeForTalk(talk);
 	}
 	
 	
 
 	public void defineTimeForNetworkEvent() {
-		LocalTime afternonPeriodTime = LocalTime.parse(sessions.get(1).getLastHourOfSession(), ApplicationConfig.TIME_FORMATTER);
+		LocalTime afternonPeriodTime = LocalTime.parse(sessions.get("Afternoon").getLastHourOfSession(), ApplicationConfig.TIME_FORMATTER);
 		if (afternonPeriodTime.isBefore(LocalTime.of(4,0))) 
-			sessions.get(1).getSpecialSession().defineHour(sessions.get(1).getLastHourOfSession());
+			sessions.get("Afternoon").getSpecialSession().defineHour(sessions.get("Afternoon").getLastHourOfSession());
 			
-		sessions.get(1).getSpecialSession().defineHour(sessions.get(1).getLastHourOfSession());
+		sessions.get("Afternoon").getSpecialSession().defineHour(sessions.get("Afternoon").getLastHourOfSession());
 
 		
 	}
@@ -62,10 +64,13 @@ public class Track {
 		resultAllSession.append(this.getName()).append(" ").append(this.getIdentificador()).append(":");
 
 		resultAllSession.append(ApplicationConfig.NEWLINE);
-
-		for (Session session : sessions) {
-			resultAllSession.append(session.toString());
+		
+		Iterator<Entry<String,Session>> sessionsEntry = sessions.entrySet().iterator();
+		while(sessionsEntry.hasNext()) {
+			Entry<String, Session> sessionName = sessionsEntry.next();
+			resultAllSession.append(sessionName.getValue().toString());
 		}
+
 
 		resultAllSession.append(ApplicationConfig.NEWLINE);
 		

@@ -22,9 +22,9 @@ public class SessionImpl implements Session {
 
 	private List<SpecialSession> specialSessions = new LinkedList<>();
 	
-	public SessionImpl(int timeAvaliable,String hour) {
-		this.timeAvaliable = timeAvaliable;
-		this.startTime = LocalTime.parse(hour,getFormatter());
+	public SessionImpl(SessionType sessionType) {
+		this.timeAvaliable = sessionType.getTimeDuration();
+		this.startTime = LocalTime.parse(sessionType.startSession(),getFormatter());
 		this.startNextTalk = this.startTime;
 	}
 	

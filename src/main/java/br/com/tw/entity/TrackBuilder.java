@@ -1,24 +1,17 @@
 package br.com.tw.entity;
 
-import java.util.LinkedList;
-import java.util.List;
-
-import br.com.tw.util.ApplicationConfig;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class TrackBuilder {
 	
 	private TrackBuilder() {}
 	
-	private Session morningPeriod;
-	private Session afternonPeriod;
-	private SpecialSession lunchPeriod;
-	private SpecialSession networkPeriod;
-	
-	private List<Session> sessions = new LinkedList<>();
+	private Map<String,Session> sessions = new LinkedHashMap<>();
 	private static int sequence = 0;
 	
 	public Track factory() {
-		sequence++;
+		incrementSequece();
 		return new Track(sequence,sessions);
 	}
 	
@@ -27,19 +20,23 @@ public class TrackBuilder {
 	}
 	
 	public TrackBuilder withSessionMorning() {
-		morningPeriod = new SessionImpl(180,ApplicationConfig.MORNINGSTARTSESSION);
-		lunchPeriod = new SpecialSessionImpl(ApplicationConfig.LUNCH_NAME,ApplicationConfig.LUNCH_TIME);
-		morningPeriod.addSpecialSession(lunchPeriod);
-		sessions.add(morningPeriod);
+		Session morningSession = new SessionImpl(SessionType.Morning);
+		SpecialSession lunchSession = new SpecialSessionImpl(SessionType.Lunch);
+		morningSession.addSpecialSession(lunchSession);
+		sessions.put("Morning",morningSession);
 		return this;
 	}
 	
 	public TrackBuilder withSessionAfternoon() {
-		afternonPeriod = new SessionImpl(240,ApplicationConfig.AFTERNOONTSESSION);
-		networkPeriod = new SpecialSessionImpl(ApplicationConfig.NETWORK_NAME,ApplicationConfig.NETWORK_TIME);
+		Session afternonPeriod = new SessionImpl(SessionType.Afternoon);
+		SpecialSession networkPeriod = new SpecialSessionImpl(SessionType.NetWorkEvent);
 		afternonPeriod.addSpecialSession(networkPeriod);		
-		sessions.add(afternonPeriod);
+		sessions.put("Afternoon",afternonPeriod);
 		return this;
+	}
+	
+	private static void incrementSequece() {
+		sequence++;
 	}
 
 }

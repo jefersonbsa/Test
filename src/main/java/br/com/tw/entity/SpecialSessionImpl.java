@@ -10,9 +10,9 @@ public class SpecialSessionImpl implements SpecialSession{
 	private LocalTime startTime;
 	private String sessionName;
 	
-	public SpecialSessionImpl(String sessionName, String hour) {
-		this.sessionName = sessionName;
-		this.defineHour(hour);
+	public SpecialSessionImpl(SessionType sessionType) {
+		this.sessionName = sessionType.getSessionName();
+		this.defineHour(sessionType.startSession());
 	}
 
 	public void defineHour(String hour) {
