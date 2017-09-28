@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import br.com.tw.util.ApplicationConfig;
-
 public class Conference {
 
 	private List<Track> tracks = new ArrayList<>();

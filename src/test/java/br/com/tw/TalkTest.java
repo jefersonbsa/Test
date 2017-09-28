@@ -1,22 +1,31 @@
 package br.com.tw;
 
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+
+import org.junit.Test;
+
+import br.com.tw.entity.Talk;
 
 public class TalkTest {
 	
-	public static void main(String[] args) {
-		LocalTime time = LocalTime.of(9, 0);
-		System.out.println(time);
+	@Test
+	public void testWithTalk_ShloudCreateOneTalk() {
+		Talk talk = new Talk("Rails Enterprice 1",60);
 		
-		time = time.plusMinutes(240);
-		DateTimeFormatter dtf = new DateTimeFormatterBuilder().appendPattern("hh:mm a").toFormatter();
-		LocalTime start = LocalTime.of(9, 0);
-		LocalTime end = start.plusMinutes(240);
-
-		System.out.println(dtf.format(start) + " to " + dtf.format(end));
+		assertThat(talk.getTimeDuration(), equalTo(60));
+		assertThat(talk.getTitle(), equalTo("Rails Enterprice 1"));
+	}
+	
+	@Test
+	public void testWithTalk_ShloudCreateTwoTalk_comparable() {
+		Talk talk1 = new Talk("Rails Enterprice 1",60);
+		Talk talk2 = new Talk("Rails Enterprice 2",45);
+		
+		assertThat(talk1.getTimeDuration(), not(talk2.getTimeDuration()));
+		assertThat(talk2.getTitle(), not(talk1.getTitle()));
+		
+		assertThat(talk1.equals(talk2), equalTo(false));
 		
 	}
-
 }
