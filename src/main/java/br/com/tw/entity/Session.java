@@ -8,4 +8,6 @@ public interface Session {
 	public boolean isAvaliableTimeForTalk(Talk talk);
 	public String getLastHourOfSession();
 	public Map<String, Talk> getTalks();
+	public void addSpecialSession(SpecialSession session);
+	public SpecialSession getSpecialSession();
 }

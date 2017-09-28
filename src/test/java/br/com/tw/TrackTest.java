@@ -7,12 +7,13 @@ import org.junit.Test;
 
 import br.com.tw.entity.Talk;
 import br.com.tw.entity.Track;
+import br.com.tw.entity.TrackBuilder;
 
 public class TrackTest {
 	
 	@Test
 	public void testWithOneTrack_ShloudCreateOneTrack_usingMorningSession() {
-		Track track = new Track(1);
+		Track track = TrackBuilder.build().withSessionMorning().withSessionAfternoon().factory();
 		track.add(new Talk("Rails Enterprice",60));
 		
 		System.out.println(track.toString());
@@ -20,7 +21,7 @@ public class TrackTest {
 	
 	@Test
 	public void testWithManyTrack_ShloudCreateOneTrack_usingAllSession() {
-		Track track = new Track(2);
+		Track track = TrackBuilder.build().withSessionMorning().withSessionAfternoon().factory();
 		
 		List<Talk> talkList = new ArrayList<Talk>();
 		

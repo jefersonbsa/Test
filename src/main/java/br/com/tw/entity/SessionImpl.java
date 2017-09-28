@@ -5,6 +5,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -12,11 +14,13 @@ import br.com.tw.util.ApplicationConfig;
 
 public class SessionImpl implements Session {
 	
-	protected Map<String,Talk> talks = new LinkedHashMap<>();
+	private Map<String,Talk> talks = new LinkedHashMap<>();
 	
-	protected int timeAvaliable ;
-	protected LocalTime startTime ;
-	protected LocalTime startNextTalk;
+	private int timeAvaliable ;
+	private LocalTime startTime ;
+	private LocalTime startNextTalk;
+
+	private List<SpecialSession> specialSessions = new LinkedList<>();
 	
 	public SessionImpl(int timeAvaliable,String hour) {
 		this.timeAvaliable = timeAvaliable;
@@ -69,8 +73,21 @@ public class SessionImpl implements Session {
 			result.append(ApplicationConfig.NEWLINE);
 		}
 		
-		return result.toString();
+		for (SpecialSession specialSession : specialSessions) {
+			result.append(specialSession.toString());
+		}
 		
+		return result.toString();
+	}
+
+	@Override
+	public void addSpecialSession(SpecialSession session) {
+		this.specialSessions.add(session);
+	}
+
+	@Override
+	public SpecialSession getSpecialSession() {
+		return this.specialSessions.get(0);
 	}
 
 }

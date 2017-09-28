@@ -10,6 +10,7 @@ import java.util.Scanner;
 import org.junit.Test;
 
 import br.com.tw.app.ConferenceSchedulerApp;
+import br.com.tw.util.ApplicationConfig;
 import br.com.tw.util.ArgumentValidation;
 import br.com.tw.util.FileTalkReader;
 
@@ -57,6 +58,8 @@ public class ConferenceSchedulerAppTest {
 		while(scannerString.hasNext()) {
 			resultOutputString.append(scannerString.nextLine());
 		}
+		resultOutputString.append(ApplicationConfig.NEWLINE);
+		
 		scannerFile.close();
 		scannerString.close();
 		

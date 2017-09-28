@@ -8,15 +8,13 @@ import br.com.tw.util.ApplicationConfig;
 
 public class Track {
 
-	private Session morningPeriod = new SessionImpl(180,ApplicationConfig.MORNINGSTARTSESSION);
-	private Session afternonPeriod = new SessionImpl(240,ApplicationConfig.AFTERNOONTSESSION);
-	private SpecialSession lunchPeriod = new SpecialSessionImpl(ApplicationConfig.LUNCH_NAME,ApplicationConfig.LUNCH_TIME);
-	private SpecialSession networkPeriod = new SpecialSessionImpl(ApplicationConfig.NETWORK_NAME,ApplicationConfig.NETWORK_TIME);
 
 	private int identificador;
+	private List<Session> sessions;
 
-	public Track(int identificador) {
+	public Track(int identificador,List<Session> sessions) {
 		this.identificador = identificador;
+		this.sessions = sessions;
 	}
 
 	public void add(Talk talk) {
@@ -28,24 +26,24 @@ public class Track {
 		if (!isTimeAvaliable(talk))
 			defineTimeForNetworkEvent();
 		
-		if (morningPeriod.isAvaliableTimeForTalk(talk))
-			return morningPeriod;
+		if (sessions.get(0).isAvaliableTimeForTalk(talk))
+			return sessions.get(0);
 		
-		return afternonPeriod;
+		return sessions.get(1);
 	}
 
 	public boolean isTimeAvaliable(Talk talk) {
-		return morningPeriod.isAvaliableTimeForTalk(talk) || afternonPeriod.isAvaliableTimeForTalk(talk);
+		return sessions.get(0).isAvaliableTimeForTalk(talk) || sessions.get(1).isAvaliableTimeForTalk(talk);
 	}
 	
 	
 
 	public void defineTimeForNetworkEvent() {
-		LocalTime afternonPeriodTime = LocalTime.parse(afternonPeriod.getLastHourOfSession(), ApplicationConfig.TIME_FORMATTER);
+		LocalTime afternonPeriodTime = LocalTime.parse(sessions.get(1).getLastHourOfSession(), ApplicationConfig.TIME_FORMATTER);
 		if (afternonPeriodTime.isBefore(LocalTime.of(4,0))) 
-			networkPeriod.defineHour(afternonPeriod.getLastHourOfSession());
+			sessions.get(1).getSpecialSession().defineHour(sessions.get(1).getLastHourOfSession());
 			
-		networkPeriod.defineHour(afternonPeriod.getLastHourOfSession());
+		sessions.get(1).getSpecialSession().defineHour(sessions.get(1).getLastHourOfSession());
 
 		
 	}
@@ -65,13 +63,12 @@ public class Track {
 
 		resultAllSession.append(ApplicationConfig.NEWLINE);
 
-		resultAllSession.append(morningPeriod.toString());
-		resultAllSession.append(lunchPeriod.toString());
-		resultAllSession.append(afternonPeriod.toString());
-		resultAllSession.append(networkPeriod.toString());
+		for (Session session : sessions) {
+			resultAllSession.append(session.toString());
+		}
 
 		resultAllSession.append(ApplicationConfig.NEWLINE);
-
+		
 		return resultAllSession.toString();
 	}
 	

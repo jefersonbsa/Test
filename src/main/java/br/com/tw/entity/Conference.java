@@ -19,10 +19,8 @@ public class Conference {
 	}
 
 	private void fillTrack() {
-		int trackSequence = 1;
-		
 		while (!talks.isEmpty()) {
-			Track track = new Track(trackSequence++);
+			Track track = TrackBuilder.build().withSessionMorning().withSessionAfternoon().factory();
 			talks = track.fillSession(talks);
 			tracks.add(track);
 		}
