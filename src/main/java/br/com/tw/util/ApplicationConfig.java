@@ -5,6 +5,8 @@ import java.time.format.DateTimeFormatterBuilder;
 
 public class ApplicationConfig {
 
+	private ApplicationConfig() {}
+	
 	public static final String PATTERN_INPUT_LINE_TALK = "^(.+) (\\d*min|lightning)$";
 	public static final String TIME_TALK = "min";
 	public static final String LIGHTNING_TALK = "lightning";

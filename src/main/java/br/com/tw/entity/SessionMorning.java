@@ -9,19 +9,18 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import br.com.tw.util.ApplicationConfig;
+
 public class SessionMorning implements Session {
 	
-	private static final String newLine = System.getProperty("line.separator");
-	private static final String MorningStartSession = "09:00AM";
+	private static final String MORNINGSTARTSESSION = "09:00AM";
 	
 	private int timeAvaliable = 180;
-	private LocalTime startTime = LocalTime.parse(MorningStartSession,getFormatter());
+	private LocalTime startTime = LocalTime.parse(MORNINGSTARTSESSION,getFormatter());
 	private LocalTime startNextTalk = this.startTime;
 	
-	private Map<String,Talk> talks = new LinkedHashMap<String,Talk>();
+	private Map<String,Talk> talks = new LinkedHashMap<>();
 	
-	public SessionMorning() {
-	}
 	
 	public void add(Talk talk) {
 		if (!isAvaliableTimeForTalk(talk))
@@ -65,7 +64,7 @@ public class SessionMorning implements Session {
 		while(schedulesEntry.hasNext()) {
 			Entry<String, Talk> hourEntry = schedulesEntry.next();
 			result.append(hourEntry.getKey() + " " + hourEntry.getValue());
-			result.append(newLine);
+			result.append(ApplicationConfig.NEWLINE);
 		}
 		
 		return result.toString();

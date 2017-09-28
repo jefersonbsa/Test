@@ -1,5 +1,7 @@
 package br.com.tw.entity;
 
+import br.com.tw.util.ApplicationConfig;
+
 public class Talk  implements Comparable<Talk>{
 
 	private int timeDuration;
@@ -29,9 +31,9 @@ public class Talk  implements Comparable<Talk>{
 		String extensiveTime;
 		
 		if ( this.timeDuration == 5)
-			extensiveTime = "lightning";
+			extensiveTime = ApplicationConfig.LIGHTNING_TALK;
 		else
-			extensiveTime = this.timeDuration + "min"; 
+			extensiveTime = this.timeDuration + ApplicationConfig.TIME_TALK; 
 		return this.getTitle() + " " + extensiveTime;
 	}
 	

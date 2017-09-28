@@ -13,8 +13,9 @@ import br.com.tw.entity.Talk;
 public class FileTalkReader {
 	
 	
+	private static final String INVALID_DATA_FORMAT_USING_IN_TALK = "Invalid data format using in talk : ";
 	private File file;
-	List<Talk> talks = new ArrayList<Talk>();
+	List<Talk> talks = new ArrayList<>();
 	
 	public FileTalkReader(String filename) {
 		this.file = new File(filename);
@@ -69,17 +70,17 @@ public class FileTalkReader {
 	private void validateTalkAtributes(List<String> talkAtributes, String line) {
 
 		if (talkAtributes.isEmpty() || talkAtributes.size() > 3)
-			throw new IllegalArgumentException("Invalid data format using in talk : " + line);
+			throw new IllegalArgumentException(INVALID_DATA_FORMAT_USING_IN_TALK + line);
 
 		if (!talkAtributes.get(0).equals(line))
-			throw new IllegalArgumentException("Invalid data format using in talk : " + line);
+			throw new IllegalArgumentException(INVALID_DATA_FORMAT_USING_IN_TALK + line);
 
-		if (!talkAtributes.get(2).contains("min") && !talkAtributes.get(2).contains("lightning"))
-			throw new IllegalArgumentException("Invalid data format using in talk : " + line);
+		if (!talkAtributes.get(2).contains(ApplicationConfig.TIME_TALK) && !talkAtributes.get(2).contains(ApplicationConfig.LIGHTNING_TALK))
+			throw new IllegalArgumentException(INVALID_DATA_FORMAT_USING_IN_TALK + line);
 	}
 
 	private List<String> parseLine(String line) {
-		List<String> talkAtributes = new ArrayList<String>();
+		List<String> talkAtributes = new ArrayList<>();
 
 		Pattern pattern = Pattern.compile(ApplicationConfig.PATTERN_INPUT_LINE_TALK);
 		Matcher matcher = pattern.matcher(line);
@@ -91,7 +92,7 @@ public class FileTalkReader {
 			return talkAtributes;
 		}
 
-		throw new IllegalArgumentException("Invalid data format using in talk : " + line);
+		throw new IllegalArgumentException(INVALID_DATA_FORMAT_USING_IN_TALK + line);
 
 	}
 

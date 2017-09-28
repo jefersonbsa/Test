@@ -8,7 +8,7 @@ import br.com.tw.util.ApplicationConfig;
 
 public class Conference {
 
-	private List<Track> tracks = new ArrayList<Track>();
+	private List<Track> tracks = new ArrayList<>();
 	private List<Talk> talks;
 
 	public Conference(List<Talk> talks) {

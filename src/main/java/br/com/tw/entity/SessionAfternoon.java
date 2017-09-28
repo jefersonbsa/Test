@@ -13,16 +13,13 @@ import br.com.tw.util.ApplicationConfig;
 
 public class SessionAfternoon implements Session {
 	
-	private static final String AfternoontSession = "01:00PM";
+	private static final String AFTERNOONTSESSION = "01:00PM";
 	
 	private int timeAvaliable = 240;
-	private LocalTime startTime =LocalTime.parse(AfternoontSession,getFormatter());
+	private LocalTime startTime =LocalTime.parse(AFTERNOONTSESSION,getFormatter());
 	private LocalTime startNextTalk = this.startTime;
 	
 	private Map<String,Talk> talks = new LinkedHashMap<String,Talk>();
-	
-	public SessionAfternoon() {
-	}
 	
 	public void add(Talk talk) {
 		if (!isAvaliableTimeForTalk(talk))
