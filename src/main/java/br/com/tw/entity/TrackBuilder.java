@@ -20,18 +20,18 @@ public class TrackBuilder {
 	}
 	
 	public TrackBuilder withSessionMorning() {
-		Session morningSession = new SessionImpl(SessionType.Morning);
-		SpecialSession lunchSession = new SpecialSessionImpl(SessionType.Lunch);
+		Session morningSession = new SessionImpl(SessionType.MORNING);
+		SpecialSession lunchSession = new SpecialSessionImpl(SessionType.LUNCH);
 		morningSession.addSpecialSession(lunchSession);
-		sessions.put("Morning",morningSession);
+		sessions.put(SessionType.MORNING.session(),morningSession);
 		return this;
 	}
 	
 	public TrackBuilder withSessionAfternoon() {
-		Session afternonPeriod = new SessionImpl(SessionType.Afternoon);
-		SpecialSession networkPeriod = new SpecialSessionImpl(SessionType.NetWorkEvent);
+		Session afternonPeriod = new SessionImpl(SessionType.AFTERNOON);
+		SpecialSession networkPeriod = new SpecialSessionImpl(SessionType.NETWORKEVENT);
 		afternonPeriod.addSpecialSession(networkPeriod);		
-		sessions.put("Afternoon",afternonPeriod);
+		sessions.put(SessionType.AFTERNOON.session(),afternonPeriod);
 		return this;
 	}
 	

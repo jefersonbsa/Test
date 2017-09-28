@@ -11,8 +11,8 @@ public class SpecialSessionImpl implements SpecialSession{
 	private String sessionName;
 	
 	public SpecialSessionImpl(SessionType sessionType) {
-		this.sessionName = sessionType.getSessionName();
-		this.defineHour(sessionType.startSession());
+		this.sessionName = sessionType.session();
+		this.defineHour(sessionType.start());
 	}
 
 	public void defineHour(String hour) {

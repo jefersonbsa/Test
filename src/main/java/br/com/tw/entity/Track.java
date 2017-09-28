@@ -28,24 +28,24 @@ public class Track {
 		if (!isTimeAvaliable(talk))
 			defineTimeForNetworkEvent();
 		
-		if (sessions.get("Morning").isAvaliableTimeForTalk(talk))
-			return sessions.get("Morning");
+		if (sessions.get(SessionType.MORNING.session()).isAvaliableTimeForTalk(talk))
+			return sessions.get(SessionType.MORNING.session());
 		
-		return sessions.get("Afternoon");
+		return sessions.get(SessionType.AFTERNOON.session());
 	}
 
 	public boolean isTimeAvaliable(Talk talk) {
-		return sessions.get("Morning").isAvaliableTimeForTalk(talk) || sessions.get("Afternoon").isAvaliableTimeForTalk(talk);
+		return sessions.get(SessionType.MORNING.session()).isAvaliableTimeForTalk(talk) || sessions.get(SessionType.AFTERNOON.session()).isAvaliableTimeForTalk(talk);
 	}
 	
 	
 
 	public void defineTimeForNetworkEvent() {
-		LocalTime afternonPeriodTime = LocalTime.parse(sessions.get("Afternoon").getLastHourOfSession(), ApplicationConfig.TIME_FORMATTER);
+		LocalTime afternonPeriodTime = LocalTime.parse(sessions.get(SessionType.AFTERNOON.session()).getLastHourOfSession(), ApplicationConfig.TIME_FORMATTER);
 		if (afternonPeriodTime.isBefore(LocalTime.of(4,0))) 
-			sessions.get("Afternoon").getSpecialSession().defineHour(sessions.get("Afternoon").getLastHourOfSession());
+			sessions.get(SessionType.AFTERNOON.session()).getSpecialSession().defineHour(sessions.get(SessionType.AFTERNOON.session()).getLastHourOfSession());
 			
-		sessions.get("Afternoon").getSpecialSession().defineHour(sessions.get("Afternoon").getLastHourOfSession());
+		sessions.get(SessionType.AFTERNOON.session()).getSpecialSession().defineHour(sessions.get(SessionType.AFTERNOON.session()).getLastHourOfSession());
 
 		
 	}

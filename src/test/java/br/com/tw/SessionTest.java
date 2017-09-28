@@ -15,7 +15,7 @@ public class SessionTest {
 	@Test
 	public void testWithMorningSession_shouldCreateSession_usingOneTalk() {
 		String[] hoursOfTalks = new String[1];
-		Session session = new SessionImpl(SessionType.Morning);
+		Session session = new SessionImpl(SessionType.MORNING);
 		Talk talk = new Talk("Rails Enterprise",60);
 		
 		session.add(talk);
@@ -35,7 +35,7 @@ public class SessionTest {
 		String[] hoursOfTalks = new String[4];
 		String[] expectedhoursOfTalks = {"01:00PM","02:00PM","03:00PM","04:00PM"};
 		
-		Session session = new SessionImpl(SessionType.Afternoon);
+		Session session = new SessionImpl(SessionType.AFTERNOON);
 		Talk talk1 = new Talk("Rails Enterprise",60);
 		Talk talk2 = new Talk("Rails Enterprise 1",60);
 		Talk talk3 = new Talk("Rails Enterprise 2",60);

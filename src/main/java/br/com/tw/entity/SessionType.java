@@ -1,10 +1,10 @@
 package br.com.tw.entity;
 
 public enum SessionType {
-	Morning("09:00AM",180,"Morning"),
-	Afternoon("01:00PM",240,"Afternoon"),
-	Lunch("12:00PM",60,"Lunch"),
-	NetWorkEvent("05:00PM",60,"Networking Event");
+	MORNING("09:00AM",180,"Morning"),
+	AFTERNOON("01:00PM",240,"Afternoon"),
+	LUNCH("12:00PM",60,"Lunch"),
+	NETWORKEVENT("05:00PM",60,"Networking Event");
 
 	private String hour;
 	private int timeDuration;
@@ -16,15 +16,15 @@ public enum SessionType {
 		this.sessionName = sessionName;
 	}
 
-	public String startSession() {
+	public String start() {
 		return hour;
 	}
 
-	public int  getTimeDuration() {
+	public int  time() {
 		return this.timeDuration;
 	}
 
-	public String getSessionName() {
+	public String session() {
 		return sessionName;
 	}
 }
