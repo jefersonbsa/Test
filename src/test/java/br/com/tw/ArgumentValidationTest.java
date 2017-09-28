@@ -44,7 +44,7 @@ public class ArgumentValidationTest {
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void testWithFileEmptyArgs_shouldGenerateException() {
-		String[] filename = { new File("src/test/resources" + fileEmptyArgs).getAbsoluteFile().getPath()};
+		String[] filename = { new File("src/test/resource" + fileEmptyArgs).getAbsoluteFile().getPath()};
 		argumentValidator = new ArgumentValidation(filename);
 		argumentValidator.validate();
 	}
