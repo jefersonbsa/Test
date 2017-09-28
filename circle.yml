@@ -1,0 +1,28 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/conference-track-management
+        
+    docker:
+      - image: circleci/openjdk:8-jdk-browsers
+ 
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: conference-track-management-{{ checksum "pom.xml" }}
+      
+      - run: mvn dependency:go-offline
+      
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: conference-track-management-{{ checksum "pom.xml" }}
+      
+      - run: mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=jefersonbsa-github -Dsonar.login=1d37f217ece02f7db46907b99ac955f4e6e8d138 
+      
+      - store_test_results:
+          path: target/surefire-reports
+      
+      - store_artifacts:
+          path: target/conference-track-management-SNAPSHOT.jar
