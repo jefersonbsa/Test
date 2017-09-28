@@ -3,6 +3,7 @@ package br.com.tw;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class FileTalkReaderTest {
 	}
 	
 	private void testwithInpuFile(String pathToFile, int numberOfLine) throws IOException {
-		String filename = new FileTalkReaderTest().getClass().getResource(pathToFile).getFile();
+		String filename = new File("/src/test/resource/" + pathToFile).getAbsoluteFile().getPath();
 		fileReader = new FileTalkReader(filename);
 		List<Talk> talks = fileReader.readListOfTalk();
 		assertThat(talks.size(), equalTo(numberOfLine));

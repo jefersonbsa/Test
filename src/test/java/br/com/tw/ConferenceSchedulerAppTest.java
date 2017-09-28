@@ -31,7 +31,7 @@ public class ConferenceSchedulerAppTest {
 	}
 	
 	private void testwithInpuFile(String pathToFile) throws IOException {
-		String filename = new FileTalkReaderTest().getClass().getResource(pathToFile).getFile();
+		String filename = new File("src/test/resource/" + pathToFile).getAbsoluteFile().getPath();
 		String[] args = {filename};
 		
 		ArgumentValidation validator = new ArgumentValidation(args);
@@ -48,8 +48,7 @@ public class ConferenceSchedulerAppTest {
 	private static boolean contentEquals(String expectedFile,String resultString) throws FileNotFoundException {
 		StringBuilder resultFile = new StringBuilder();
 		StringBuilder resultOutputString = new StringBuilder();
-		
-		String filename = new ConferenceSchedulerAppTest().getClass().getResource(expectedFile).getFile();
+		String filename = new File("src/test/resource/" + expectedFile).getAbsoluteFile().getPath() ;
 		Scanner scannerFile = new Scanner(new File(filename));
 		Scanner scannerString = new Scanner(resultString);
 		while(scannerFile.hasNext()) {

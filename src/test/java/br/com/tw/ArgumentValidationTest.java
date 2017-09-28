@@ -1,5 +1,7 @@
 package br.com.tw;
 
+import java.io.File;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -42,7 +44,7 @@ public class ArgumentValidationTest {
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void testWithFileEmptyArgs_shouldGenerateException() {
-		String[] filename = {this.getClass().getResource(fileEmptyArgs[0]).getFile()};
+		String[] filename = { new File("src/test/resources" + fileEmptyArgs).getAbsoluteFile().getPath()};
 		argumentValidator = new ArgumentValidation(filename);
 		argumentValidator.validate();
 	}
