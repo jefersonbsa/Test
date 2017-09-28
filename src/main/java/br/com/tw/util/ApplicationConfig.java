@@ -12,4 +12,7 @@ public class ApplicationConfig {
 	public static final String LIGHTNING_TALK = "lightning";
 	public static final String NEWLINE = System.getProperty("line.separator");
 	public static final DateTimeFormatter TIME_FORMATTER = new DateTimeFormatterBuilder().appendPattern("hh:mma").toFormatter();
+	
+	public static final String MORNINGSTARTSESSION = "09:00AM";
+	public static final String AFTERNOONTSESSION = "01:00PM";
 }

@@ -2,7 +2,6 @@ package br.com.tw.entity;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -11,15 +10,19 @@ import java.util.Map.Entry;
 
 import br.com.tw.util.ApplicationConfig;
 
-public class SessionAfternoon implements Session {
+public class SessionImpl implements Session {
 	
-	private static final String AFTERNOONTSESSION = "01:00PM";
+	protected Map<String,Talk> talks = new LinkedHashMap<String,Talk>();
 	
-	private int timeAvaliable = 240;
-	private LocalTime startTime =LocalTime.parse(AFTERNOONTSESSION,getFormatter());
-	private LocalTime startNextTalk = this.startTime;
+	protected int timeAvaliable ;
+	protected LocalTime startTime ;
+	protected LocalTime startNextTalk;
 	
-	private Map<String,Talk> talks = new LinkedHashMap<String,Talk>();
+	public SessionImpl(int timeAvaliable,String hour) {
+		this.timeAvaliable = timeAvaliable;
+		this.startTime = LocalTime.parse(hour,getFormatter());
+		this.startNextTalk = this.startTime;
+	}
 	
 	public void add(Talk talk) {
 		if (!isAvaliableTimeForTalk(talk))
@@ -51,14 +54,13 @@ public class SessionAfternoon implements Session {
 	private void increaseHourNextTalk(Talk talk) {
 		this.startNextTalk = this.startNextTalk.plusMinutes(talk.getTimeDuration());
 	}
-	
+
 	public DateTimeFormatter getFormatter() {
-		return new DateTimeFormatterBuilder().appendPattern("hh:mma").toFormatter();
+		return ApplicationConfig.TIME_FORMATTER;
 	}
-	
+
 	@Override
 	public String toString() {
-		
 		StringBuilder result = new StringBuilder();
 		Iterator<Entry<String,Talk>> schedulesEntry = talks.entrySet().iterator();
 		while(schedulesEntry.hasNext()) {

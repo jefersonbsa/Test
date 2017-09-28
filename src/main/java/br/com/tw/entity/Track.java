@@ -8,9 +8,9 @@ import br.com.tw.util.ApplicationConfig;
 
 public class Track {
 
-	private SessionMorning morningPeriod = new SessionMorning();
+	private Session morningPeriod = new SessionImpl(180,ApplicationConfig.MORNINGSTARTSESSION);
+	private Session afternonPeriod = new SessionImpl(240,ApplicationConfig.AFTERNOONTSESSION);
 	private SessionLunch lunchPeriod = new SessionLunch();
-	private SessionAfternoon afternonPeriod = new SessionAfternoon();
 	private SessionNetworkEvent networkPeriod = new SessionNetworkEvent();
 
 	private int identificador;

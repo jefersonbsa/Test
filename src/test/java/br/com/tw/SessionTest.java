@@ -6,16 +6,16 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import org.junit.Test;
 
 import br.com.tw.entity.Session;
-import br.com.tw.entity.SessionAfternoon;
-import br.com.tw.entity.SessionMorning;
+import br.com.tw.entity.SessionImpl;
 import br.com.tw.entity.Talk;
+import br.com.tw.util.ApplicationConfig;
 
 public class SessionTest {
 	
 	@Test
 	public void testWithMorningSession_shouldCreateSession_usingOneTalk() {
 		String[] hoursOfTalks = new String[1];
-		Session session = new SessionMorning();
+		Session session = new SessionImpl(180,ApplicationConfig.MORNINGSTARTSESSION);
 		Talk talk = new Talk("Rails Enterprise",60);
 		
 		session.add(talk);
@@ -35,7 +35,7 @@ public class SessionTest {
 		String[] hoursOfTalks = new String[4];
 		String[] expectedhoursOfTalks = {"01:00PM","02:00PM","03:00PM","04:00PM"};
 		
-		Session session = new SessionAfternoon();
+		Session session = new SessionImpl(240,ApplicationConfig.AFTERNOONTSESSION);
 		Talk talk1 = new Talk("Rails Enterprise",60);
 		Talk talk2 = new Talk("Rails Enterprise 1",60);
 		Talk talk3 = new Talk("Rails Enterprise 2",60);
