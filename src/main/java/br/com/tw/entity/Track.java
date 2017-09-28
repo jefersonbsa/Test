@@ -10,8 +10,8 @@ public class Track {
 
 	private Session morningPeriod = new SessionImpl(180,ApplicationConfig.MORNINGSTARTSESSION);
 	private Session afternonPeriod = new SessionImpl(240,ApplicationConfig.AFTERNOONTSESSION);
-	private SessionLunch lunchPeriod = new SessionLunch();
-	private SessionNetworkEvent networkPeriod = new SessionNetworkEvent();
+	private SpecialSession lunchPeriod = new SpecialSessionImpl(ApplicationConfig.LUNCH_NAME,ApplicationConfig.LUNCH_TIME);
+	private SpecialSession networkPeriod = new SpecialSessionImpl(ApplicationConfig.NETWORK_NAME,ApplicationConfig.NETWORK_TIME);
 
 	private int identificador;
 
@@ -65,31 +65,16 @@ public class Track {
 
 		resultAllSession.append(ApplicationConfig.NEWLINE);
 
-		resultAllSession.append(this.sessionContent(morningPeriod));
-		resultAllSession.append(this.specialSessionContent(lunchPeriod));
-		resultAllSession.append(this.sessionContent(afternonPeriod));
-		resultAllSession.append(this.specialSessionContent(networkPeriod));
+		resultAllSession.append(morningPeriod.toString());
+		resultAllSession.append(lunchPeriod.toString());
+		resultAllSession.append(afternonPeriod.toString());
+		resultAllSession.append(networkPeriod.toString());
 
-		resultAllSession.append(ApplicationConfig.NEWLINE);
 		resultAllSession.append(ApplicationConfig.NEWLINE);
 
 		return resultAllSession.toString();
 	}
 	
-	private String sessionContent(Session session) {
-		if (session==null)
-			return "";
-		
-		return session.toString();
-	}
-	
-	private String specialSessionContent(SpecialSession session) {
-		if (session==null)
-			return "";
-		
-		return session.toString();
-	}
-
 	public List<Talk> fillSession(List<Talk> talks) {
 		Iterator<Talk> talkIterator = talks.iterator();
 		while ( talkIterator.hasNext()) {

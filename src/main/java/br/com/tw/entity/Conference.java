@@ -35,7 +35,6 @@ public class Conference {
 		for (Track track : tracks) {
 			resultOfAllTracks.append(track.toString());
 		}
-		resultOfAllTracks.append(ApplicationConfig.NEWLINE);
 
 		return resultOfAllTracks.toString();
 	}

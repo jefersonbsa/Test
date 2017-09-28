@@ -12,7 +12,7 @@ import br.com.tw.util.ApplicationConfig;
 
 public class SessionImpl implements Session {
 	
-	protected Map<String,Talk> talks = new LinkedHashMap<String,Talk>();
+	protected Map<String,Talk> talks = new LinkedHashMap<>();
 	
 	protected int timeAvaliable ;
 	protected LocalTime startTime ;

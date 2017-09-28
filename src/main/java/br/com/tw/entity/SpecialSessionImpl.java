@@ -5,18 +5,16 @@ import java.time.format.DateTimeFormatter;
 
 import br.com.tw.util.ApplicationConfig;
 
-public class SessionLunch implements SpecialSession {
-	
-	private static final String LUNCH_TIME = "12:00PM";
-	private static final String LUNCH_NAME= "Lunch";
+public class SpecialSessionImpl implements SpecialSession{
+
 	private LocalTime startTime;
-	private String sessionName = LUNCH_NAME;
+	private String sessionName;
 	
-	public SessionLunch() {
-		defineHour(LUNCH_TIME);
+	public SpecialSessionImpl(String sessionName, String hour) {
+		this.sessionName = sessionName;
+		this.defineHour(hour);
 	}
 
-	@Override
 	public void defineHour(String hour) {
 		this.startTime = LocalTime.parse(hour, getFormatter());
 	}

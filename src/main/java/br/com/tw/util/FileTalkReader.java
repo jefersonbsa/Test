@@ -21,21 +21,19 @@ public class FileTalkReader {
 		this.file = new File(filename);
 	}
 	
-	public List<Talk> readListOfTalk(){
+	public List<Talk> readListOfTalk() throws FileNotFoundException{
 		convertFileToListOfTalk();
 		return talks;
 	}
 	
-	private void convertFileToListOfTalk() {
+	private void convertFileToListOfTalk() throws FileNotFoundException {
 		
 		try(Scanner scanner = new Scanner(file)){
 			while(scanner.hasNext()) {
 				Talk talk = readLineOfTalk(scanner.nextLine());
 				talks.add(talk);
 			}
-		} catch (FileNotFoundException e) {
-			throw new IllegalArgumentException("File Not Found");
-		}
+		} 
 	}
 
 	private Talk readLineOfTalk(String line) {
@@ -44,7 +42,7 @@ public class FileTalkReader {
 
 		validateTalkAtributes(talkAtributes, line);
 
-		String title = getTitle(talkAtributes);;
+		String title = getTitle(talkAtributes);
 		int time = getTimeWithCorretFormat(talkAtributes);
 
 		return new Talk(title, time);

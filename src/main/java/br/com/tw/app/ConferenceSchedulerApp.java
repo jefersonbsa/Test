@@ -1,5 +1,6 @@
 package br.com.tw.app;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 import br.com.tw.entity.Conference;
@@ -17,7 +18,7 @@ public class ConferenceSchedulerApp {
 	private FileTalkReader talkReader;
 	private Conference conference;
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException {
 		
 		ArgumentValidation validator = new ArgumentValidation(args);
 		FileTalkReader talkReader = new FileTalkReader(args[0]);
@@ -26,7 +27,7 @@ public class ConferenceSchedulerApp {
 		conferenceSchedulerApp.run();
 	}
 	
-	public void run() {
+	public void run() throws FileNotFoundException {
 		validator.validate();
 		List<Talk> talks = talkReader.readListOfTalk();
 		
