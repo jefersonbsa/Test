@@ -23,8 +23,8 @@ public class FileTalkReaderTest {
 	
 	private void testwithInpuFile(String pathToFile, int numberOfLine) throws IOException {
 		String filename = new File("src/test/resource" + pathToFile).getAbsoluteFile().getPath();
-		fileReader = new FileTalkReader(filename);
-		List<Talk> talks = fileReader.readListOfTalk();
+		fileReader = new FileTalkReader();
+		List<Talk> talks = fileReader.readListOfTalk(filename);
 		assertThat(talks.size(), equalTo(numberOfLine));
 	}
 

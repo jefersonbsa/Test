@@ -36,10 +36,10 @@ public class ConferenceSchedulerAppTest {
 		String[] args = {filename};
 		
 		ArgumentValidation validator = new ArgumentValidation(args);
-		FileTalkReader talkReader = new FileTalkReader(filename);
+		FileTalkReader talkReader = new FileTalkReader();
 		
 		ConferenceSchedulerApp conferenceSchedulerApp = new ConferenceSchedulerApp(validator, talkReader) ;
-		conferenceSchedulerApp.execute();
+		conferenceSchedulerApp.execute(args);
 		
 		
 		assertTrue(contentEquals(expectedResultFilename(pathToFile),conferenceSchedulerApp.toString()));

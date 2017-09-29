@@ -14,16 +14,12 @@ import br.com.tw.util.TalkReader;
 
 public class FileTalkReader implements TalkReader{
 	
-	
 	private static final String INVALID_DATA_FORMAT_USING_IN_TALK = "Invalid data format using in talk : ";
 	private File file;
 	List<Talk> talks = new ArrayList<>();
 	
-	public FileTalkReader(String filename) {
+	public List<Talk> readListOfTalk(String filename) throws FileNotFoundException{
 		this.file = new File(filename);
-	}
-	
-	public List<Talk> readListOfTalk() throws FileNotFoundException{
 		convertFileToListOfTalk();
 		return talks;
 	}

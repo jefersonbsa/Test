@@ -7,6 +7,6 @@ import br.com.tw.entity.Talk;
 
 public interface TalkReader {
 	
-	List<Talk> readListOfTalk() throws FileNotFoundException;
+	List<Talk> readListOfTalk(String filename) throws FileNotFoundException;
 
 }
