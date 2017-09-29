@@ -1,4 +1,4 @@
-package br.com.tw;
+package br.com.tw.test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -10,7 +10,7 @@ import java.util.List;
 import org.junit.Test;
 
 import br.com.tw.entity.Talk;
-import br.com.tw.util.FileTalkReader;
+import br.com.tw.util.impl.FileTalkReader;
 
 public class FileTalkReaderTest {
 	

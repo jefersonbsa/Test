@@ -1,4 +1,4 @@
-package br.com.tw;
+package br.com.tw.test;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -10,7 +10,7 @@ import br.com.tw.entity.Talk;
 public class TalkTest {
 	
 	@Test
-	public void testWithTalk_ShloudCreateOneTalk() {
+	public void testWithTalk_ShouldCreateOneTalk() {
 		Talk talk = new Talk("Rails Enterprice 1",60);
 		
 		assertThat(talk.getTimeDuration(), equalTo(60));
@@ -18,7 +18,7 @@ public class TalkTest {
 	}
 	
 	@Test
-	public void testWithTalk_ShloudCreateTwoTalk_comparable() {
+	public void testWithTalk_ShouldCreateTwoTalk_comparable() {
 		Talk talk1 = new Talk("Rails Enterprice 1",60);
 		Talk talk2 = new Talk("Rails Enterprice 2",45);
 		

@@ -1,8 +1,11 @@
 package br.com.tw.entity;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+
+import br.com.tw.util.TrackBuilder;
 
 public class Conference {
 
@@ -20,7 +23,7 @@ public class Conference {
 
 	private void fillTrack() {
 		while (!talks.isEmpty()) {
-			Track track = TrackBuilder.build().withSessionMorning().withSessionAfternoon().factory();
+			Track track = TrackBuilder.getBuilder().withSessionMorning().withSessionAfternoon().build();
 			talks = track.fillSession(talks);
 			tracks.add(track);
 		}
@@ -34,5 +37,10 @@ public class Conference {
 
 		return resultOfAllTracks.toString();
 	}
+	
+	public Collection<Track> getTracks() {
+		return Collections.unmodifiableList(tracks);
+	}
+
 
 }

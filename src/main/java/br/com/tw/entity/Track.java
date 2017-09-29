@@ -1,11 +1,14 @@
 package br.com.tw.entity;
 
 import java.time.LocalTime;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import br.com.tw.session.Session;
+import br.com.tw.session.SessionType;
 import br.com.tw.util.ApplicationConfig;
 
 public class Track {
@@ -38,7 +41,9 @@ public class Track {
 		return sessions.get(SessionType.MORNING.session()).isAvaliableTimeForTalk(talk) || sessions.get(SessionType.AFTERNOON.session()).isAvaliableTimeForTalk(talk);
 	}
 	
-	
+	public Map<String, Session> getSessions(){
+		return Collections.unmodifiableMap(this.sessions);
+	}
 
 	public void defineTimeForNetworkEvent() {
 		LocalTime afternonPeriodTime = LocalTime.parse(sessions.get(SessionType.AFTERNOON.session()).getLastHourOfSession(), ApplicationConfig.TIME_FORMATTER);

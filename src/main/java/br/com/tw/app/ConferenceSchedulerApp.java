@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.tw.entity.Conference;
 import br.com.tw.entity.Talk;
-import br.com.tw.util.ArgumentValidation;
-import br.com.tw.util.FileTalkReader;
+import br.com.tw.util.impl.ArgumentValidation;
+import br.com.tw.util.impl.FileTalkReader;
 
 /**
  * App for organize Talks in a conference

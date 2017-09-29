@@ -1,27 +1,21 @@
-package br.com.tw;
+package br.com.tw.test;
+
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
 
+import br.com.tw.entity.Conference;
 import br.com.tw.entity.Talk;
-import br.com.tw.entity.Track;
-import br.com.tw.entity.TrackBuilder;
 
-public class TrackTest {
+public class ConferenceTest {
+	
 	
 	@Test
-	public void testWithOneTrack_ShloudCreateOneTrack_usingMorningSession() {
-		Track track = TrackBuilder.build().withSessionMorning().withSessionAfternoon().factory();
-		track.add(new Talk("Rails Enterprice",60));
-		
-		System.out.println(track.toString());
-	}
-	
-	@Test
-	public void testWithManyTrack_ShloudCreateOneTrack_usingAllSession() {
-		Track track = TrackBuilder.build().withSessionMorning().withSessionAfternoon().factory();
+	public void testWithManyTrack_ShouldCreateTwoTrack_usingAllSession() {
 		
 		List<Talk> talkList = new ArrayList<Talk>();
 		
@@ -38,16 +32,10 @@ public class TrackTest {
 		talkList.add(new Talk("Rails Enterprice 11",30));
 		talkList.add(new Talk("Rails Enterprice 12",30));
 		
-		for(Talk talk: talkList) {
-			if (track.isTimeAvaliable(talk))
-				track.add(talk);
-			else {
-				track.defineTimeForNetworkEvent();
-				break;
-			}
-		}
-		System.out.println(track.toString());
+		Conference conference = new Conference(talkList);
+		conference.organize();
+		
+		assertThat(conference.getTracks().size(),equalTo(2) );
 	}
 
-	
 }

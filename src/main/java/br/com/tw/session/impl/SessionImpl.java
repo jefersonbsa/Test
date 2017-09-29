@@ -1,7 +1,8 @@
-package br.com.tw.entity;
+package br.com.tw.session.impl;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -10,6 +11,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import br.com.tw.entity.Talk;
+import br.com.tw.session.Session;
+import br.com.tw.session.SessionType;
+import br.com.tw.session.SpecialSession;
 import br.com.tw.util.ApplicationConfig;
 
 public class SessionImpl implements Session {
@@ -43,8 +48,8 @@ public class SessionImpl implements Session {
 	}
 
 
-	public Map<String, Talk> getTalks() {
-		return Collections.unmodifiableMap(talks);
+	public Collection<Talk> getTalks() {
+		return Collections.unmodifiableCollection(talks.values());
 	}
 
 	public boolean isAvaliableTimeForTalk(Talk talk) {

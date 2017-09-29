@@ -1,4 +1,4 @@
-package br.com.tw;
+package br.com.tw.test;
 
 import static org.junit.Assert.assertTrue;
 
@@ -11,27 +11,27 @@ import org.junit.Test;
 
 import br.com.tw.app.ConferenceSchedulerApp;
 import br.com.tw.util.ApplicationConfig;
-import br.com.tw.util.ArgumentValidation;
-import br.com.tw.util.FileTalkReader;
+import br.com.tw.util.impl.ArgumentValidation;
+import br.com.tw.util.impl.FileTalkReader;
 
 public class ConferenceSchedulerAppTest {
 	
 	@Test
-	public void testwithInputFile_shouldCreateOneFile_resultTwoTrack() throws IOException {
-		testwithInpuFile("/input_file_conference_with_two_track");
+	public void testWithInputFile_shouldCreateOneFile_resultTwoTrack() throws IOException {
+		testWithInpuFile("/input_file_conference_with_two_track");
 	}
 	
 	@Test
-	public void testwithInputFile_shouldCreateOneFile_resultOneTrack() throws IOException {
-		testwithInpuFile("/input_file_conference_with_one_track");
+	public void testWithInputFile_shouldCreateOneFile_resultOneTrack() throws IOException {
+		testWithInpuFile("/input_file_conference_with_one_track");
 	}
 	
 	@Test
-	public void testwithInputFile_shouldCreateOneFile_resultEarlyNetworkEvent() throws IOException {
-		testwithInpuFile("/input_file_conference_with_early_netwok");
+	public void testWithInputFile_shouldCreateOneFile_resultEarlyNetworkEvent() throws IOException {
+		testWithInpuFile("/input_file_conference_with_early_netwok");
 	}
 	
-	private void testwithInpuFile(String pathToFile) throws IOException {
+	private void testWithInpuFile(String pathToFile) throws IOException {
 		String filename = new File("src/test/resource/" + pathToFile).getAbsoluteFile().getPath();
 		String[] args = {filename};
 		

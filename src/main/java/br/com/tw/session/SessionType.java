@@ -1,4 +1,4 @@
-package br.com.tw.entity;
+package br.com.tw.session;
 
 public enum SessionType {
 	MORNING("09:00AM",180,"Morning"),

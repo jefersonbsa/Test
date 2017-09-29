@@ -1,8 +1,10 @@
-package br.com.tw.entity;
+package br.com.tw.session.impl;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+import br.com.tw.session.SessionType;
+import br.com.tw.session.SpecialSession;
 import br.com.tw.util.ApplicationConfig;
 
 public class SpecialSessionImpl implements SpecialSession{

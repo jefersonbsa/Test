@@ -1,4 +1,4 @@
-package br.com.tw.entity;
+package br.com.tw.session;
 
 public interface SpecialSession {
 	

@@ -1,7 +1,14 @@
-package br.com.tw.entity;
+package br.com.tw.util;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import br.com.tw.entity.Track;
+import br.com.tw.session.Session;
+import br.com.tw.session.SessionType;
+import br.com.tw.session.SpecialSession;
+import br.com.tw.session.impl.SessionImpl;
+import br.com.tw.session.impl.SpecialSessionImpl;
 
 public class TrackBuilder {
 	
@@ -10,12 +17,12 @@ public class TrackBuilder {
 	private Map<String,Session> sessions = new LinkedHashMap<>();
 	private static int sequence = 0;
 	
-	public Track factory() {
+	public Track build() {
 		incrementSequece();
 		return new Track(sequence,sessions);
 	}
 	
-	public static TrackBuilder build() {
+	public static TrackBuilder getBuilder() {
 		return new TrackBuilder();
 	}
 	

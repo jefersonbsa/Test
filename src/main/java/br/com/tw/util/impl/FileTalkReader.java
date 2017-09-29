@@ -1,4 +1,4 @@
-package br.com.tw.util;
+package br.com.tw.util.impl;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -9,8 +9,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import br.com.tw.entity.Talk;
+import br.com.tw.util.ApplicationConfig;
+import br.com.tw.util.TalkReader;
 
-public class FileTalkReader {
+public class FileTalkReader implements TalkReader{
 	
 	
 	private static final String INVALID_DATA_FORMAT_USING_IN_TALK = "Invalid data format using in talk : ";

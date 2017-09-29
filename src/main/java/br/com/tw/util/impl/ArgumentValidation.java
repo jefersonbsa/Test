@@ -1,8 +1,10 @@
-package br.com.tw.util;
+package br.com.tw.util.impl;
 
 import java.io.File;
 
-public class ArgumentValidation {
+import br.com.tw.util.ArgumentValidator;
+
+public class ArgumentValidation implements ArgumentValidator {
 	
 	private String[] args;
 	
@@ -42,7 +44,7 @@ public class ArgumentValidation {
 		}
 	}
 	
-	public void validateArgumentNotFound() {
+	private void validateArgumentNotFound() {
 		if (args.length < 1) throw new IllegalArgumentException("Argument not found");
 	}
 

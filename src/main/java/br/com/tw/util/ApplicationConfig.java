@@ -12,4 +12,5 @@ public class ApplicationConfig {
 	public static final String LIGHTNING_TALK = "lightning";
 	public static final String NEWLINE = System.getProperty("line.separator");
 	public static final DateTimeFormatter TIME_FORMATTER = new DateTimeFormatterBuilder().appendPattern("hh:mma").toFormatter();
+	
 }
