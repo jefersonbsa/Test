@@ -53,6 +53,9 @@ public class SessionImpl implements Session {
 	}
 
 	public boolean isAvaliableTimeForTalk(Talk talk) {
+		if (this.specialSessions!=null && this.startNextTalk.plusMinutes(talk.getTimeDuration()).isAfter(getSpecialSession().getStartHour()))
+			return false;
+		
 		return this.timeAvaliable >= talk.getTimeDuration();
 	}
 	

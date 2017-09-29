@@ -16,6 +16,9 @@ public class Conference {
 		this.talks = talks;
 	}
 
+	/**
+	 * Organize Talks in Tracks in sorted order
+	 */
 	public void organize() {
 		Collections.sort(talks);
 		fillTrack();

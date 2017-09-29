@@ -45,12 +45,12 @@ public class TrackTest {
 		talkList.add(new Talk("Rails Enterprice 11",30));
 		talkList.add(new Talk("Rails Enterprice 12",30));
 		
-		List<Talk> remain = track.fillSession(talkList);
+		List<Talk> remaining = track.fillSession(talkList);
 		
 		
 		assertThat(track.getSessions().get(SessionType.MORNING.session()).getTalks().size(), equalTo(3));
 		assertThat(track.getSessions().get(SessionType.AFTERNOON.session()).getTalks().size(), equalTo(7));
-		assertThat(remain.size(), equalTo(2));
+		assertThat(remaining.size(), equalTo(2));
 		
 	}
 

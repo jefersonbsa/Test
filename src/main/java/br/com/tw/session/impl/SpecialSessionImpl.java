@@ -35,4 +35,9 @@ public class SpecialSessionImpl implements SpecialSession{
 		return result.toString();
 	}
 
+	@Override	
+	public LocalTime getStartHour() {
+		return this.startTime;
+	}
+
 }

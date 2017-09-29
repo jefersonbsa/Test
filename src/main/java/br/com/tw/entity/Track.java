@@ -45,6 +45,10 @@ public class Track {
 		return Collections.unmodifiableMap(this.sessions);
 	}
 
+	/**
+	 * Define Special Session Network Event
+	 * If Session finalize before 04:00PM define it for Network Event because restrinction from conference
+	 */
 	public void defineTimeForNetworkEvent() {
 		LocalTime afternonPeriodTime = LocalTime.parse(sessions.get(SessionType.AFTERNOON.session()).getLastHourOfSession(), ApplicationConfig.TIME_FORMATTER);
 		if (afternonPeriodTime.isBefore(LocalTime.of(4,0))) 
@@ -82,6 +86,12 @@ public class Track {
 		return resultAllSession.toString();
 	}
 	
+	/**
+	 * Fill each Talk in respective Session 
+	 * 
+	 * @param  list of talks for put in Session
+	 * @return list of remaining Talks
+	 */
 	public List<Talk> fillSession(List<Talk> talks) {
 		Iterator<Talk> talkIterator = talks.iterator();
 		while ( talkIterator.hasNext()) {

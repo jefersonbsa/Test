@@ -5,6 +5,8 @@ import java.util.List;
 
 import br.com.tw.entity.Conference;
 import br.com.tw.entity.Talk;
+import br.com.tw.util.ArgumentValidator;
+import br.com.tw.util.TalkReader;
 import br.com.tw.util.impl.ArgumentValidation;
 import br.com.tw.util.impl.FileTalkReader;
 
@@ -14,20 +16,28 @@ import br.com.tw.util.impl.FileTalkReader;
  */
 public class ConferenceSchedulerApp {
 	
-	ArgumentValidation validator;
-	private FileTalkReader talkReader;
+	private ArgumentValidator validator;
+	private TalkReader talkReader;
 	private Conference conference;
 	
-	public static void main(String[] args) throws FileNotFoundException {
+	
+	
+	/**
+	 * Initialization of Application with path to file of Talks
+	 * 
+	 * @param pathToFile
+	 * @throws FileNotFoundException
+	 */
+	public static void main(String[] pathToFile) throws FileNotFoundException {
 		
-		ArgumentValidation validator = new ArgumentValidation(args);
-		FileTalkReader talkReader = new FileTalkReader(args[0]);
+		ArgumentValidator validator = new ArgumentValidation(pathToFile);
+		TalkReader talkReader = new FileTalkReader(pathToFile[0]);
 		
 		ConferenceSchedulerApp conferenceSchedulerApp = new ConferenceSchedulerApp(validator, talkReader) ;
-		conferenceSchedulerApp.run();
+		conferenceSchedulerApp.execute();
 	}
 	
-	public void run() throws FileNotFoundException {
+	public void execute() throws FileNotFoundException {
 		validator.validate();
 		List<Talk> talks = talkReader.readListOfTalk();
 		
@@ -35,7 +45,7 @@ public class ConferenceSchedulerApp {
 		conference.organize();
 	}
 
-	public ConferenceSchedulerApp(ArgumentValidation validator, FileTalkReader talkReader) {
+	public ConferenceSchedulerApp(ArgumentValidator validator, TalkReader talkReader) {
 		this.validator = validator;
 		this.talkReader = talkReader;
 	}

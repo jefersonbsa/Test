@@ -9,12 +9,14 @@ import br.com.tw.entity.Talk;
 import br.com.tw.session.Session;
 import br.com.tw.session.SessionType;
 import br.com.tw.session.impl.SessionImpl;
+import br.com.tw.session.impl.SpecialSessionImpl;
 
 public class SessionTest {
 	
 	@Test
 	public void testWithMorningSession_shouldCreateSession_usingOneTalk() {
 		Session session = new SessionImpl(SessionType.MORNING);
+		session.addSpecialSession(new SpecialSessionImpl(SessionType.LUNCH));
 		Talk talk = new Talk("Rails Enterprise",60);
 		
 		session.add(talk);
@@ -27,6 +29,7 @@ public class SessionTest {
 	public void testWithAfternoonSession_shouldCreateSession_usingFourTalk() {
 		
 		Session session = new SessionImpl(SessionType.AFTERNOON);
+		session.addSpecialSession(new SpecialSessionImpl(SessionType.NETWORKEVENT));
 		Talk talk1 = new Talk("Rails Enterprise",60);
 		Talk talk2 = new Talk("Rails Enterprise 1",60);
 		Talk talk3 = new Talk("Rails Enterprise 2",60);

@@ -39,7 +39,7 @@ public class ConferenceSchedulerAppTest {
 		FileTalkReader talkReader = new FileTalkReader(filename);
 		
 		ConferenceSchedulerApp conferenceSchedulerApp = new ConferenceSchedulerApp(validator, talkReader) ;
-		conferenceSchedulerApp.run();
+		conferenceSchedulerApp.execute();
 		
 		
 		assertTrue(contentEquals(expectedResultFilename(pathToFile),conferenceSchedulerApp.toString()));
