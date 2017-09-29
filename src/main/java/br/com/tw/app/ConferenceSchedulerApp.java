@@ -2,6 +2,7 @@ package br.com.tw.app;
 
 import java.io.FileNotFoundException;
 import java.util.List;
+import java.util.Scanner;
 
 import br.com.tw.entity.Conference;
 import br.com.tw.entity.Talk;
@@ -35,8 +36,14 @@ public class ConferenceSchedulerApp {
 		
 		ConferenceSchedulerApp conferenceSchedulerApp = new ConferenceSchedulerApp(validator, talkReader) ;
 		conferenceSchedulerApp.execute();
+		
+		conferenceSchedulerApp.print();
 	}
 	
+	private void print() {
+		System.out.println(this.toString());
+	}
+
 	public void execute() throws FileNotFoundException {
 		validator.validate();
 		List<Talk> talks = talkReader.readListOfTalk();

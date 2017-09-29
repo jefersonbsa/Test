@@ -4,7 +4,7 @@
 	<groupId>br.com.tw</groupId>
 	<artifactId>conference-track-management</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0</version>
 	<name>conference-track-management</name>
 	<url>http://maven.apache.org</url>
 	<properties>
@@ -24,6 +24,19 @@
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<mainClass>br.com.tw.app.ConferenceSchedulerApp</mainClass>
+						</manifest>
+					</archive>
 				</configuration>
 			</plugin>
 		</plugins>
