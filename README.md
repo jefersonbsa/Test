@@ -10,7 +10,7 @@
 
 ```bash
 cd /path/to/diretorio-projeto
-maven package
+mvn package
 ```
 
 Maven irá compilar o codigo, o jar será copiado para o diretorio `target/` 
